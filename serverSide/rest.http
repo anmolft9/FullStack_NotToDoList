@@ -1,0 +1,34 @@
+###root api
+GET http://localhost:8000/
+
+
+###fetch all task
+GET http://localhost:8000/api/v1/task/646b67f90e34aac6724373e6
+Content-Type: application/json
+
+###post task
+POST http://localhost:8000/api/v1/task
+Content-Type: application/json
+
+{
+   "task":"dancing",
+   "hours": 1
+}
+
+
+###Patch  task
+PATCH http://localhost:8000/api/v1/task/
+Content-Type: application/json
+
+{
+    "_id":"646b67f90e34aac6724373e6",
+    "type":"bad"
+}
+
+###Delete
+DELETE http://localhost:8000/api/v1/task/
+Content-Type: application/json
+
+{
+    "_id": "646a2ac495fd33c01d21623e"
+}
