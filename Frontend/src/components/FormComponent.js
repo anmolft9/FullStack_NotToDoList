@@ -47,8 +47,8 @@ export const FormComponent = ({ addTask }) => {
                   />
                 </Col>
                 <Col>
-                  <Button size="lg" variant="danger">
-                    Danger
+                  <Button size="lg" variant="success" type="submit">
+                    Add
                   </Button>
                 </Col>
               </Row>

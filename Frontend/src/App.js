@@ -4,8 +4,8 @@ import { FormComponent } from "./components/FormComponent.js";
 import { List } from "./components/List";
 
 function App() {
-  const addTask = (FormValue) => {
-    console.log(FormValue);
+  const addTask = (task) => {
+    console.log(task);
   };
   return (
     <div className="App">
