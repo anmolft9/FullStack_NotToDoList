@@ -2,11 +2,14 @@ import "./App.css";
 import { Container } from "react-bootstrap";
 import { FormComponent } from "./components/FormComponent.js";
 import { List } from "./components/List";
+import { useState } from "react";
 
 function App() {
+  const [taskList, setTaskList] = useState([]);
   const addTask = (task) => {
-    console.log(task);
+    setTaskList([...taskList, task]);
   };
+  console.log(taskList);
   return (
     <div className="App">
       <Container>
@@ -15,7 +18,7 @@ function App() {
         </div>
 
         <FormComponent addTask={addTask} />
-        <List />
+        <List taskList={taskList} />
       </Container>
     </div>
   );

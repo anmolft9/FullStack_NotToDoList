@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 
-export const TaskList = () => {
+export const TaskList = ({ taskList }) => {
   return (
     <div className="mt-5">
       <h5 className="m-4 text-center">Entry List</h5>
@@ -13,7 +13,17 @@ export const TaskList = () => {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {taskList &&
+            taskList.map((item, i) => {
+              return (
+                <tr>
+                  <td>{item.task}</td>
+                  <td>{item.hours}</td>
+                </tr>
+              );
+            })}
+        </tbody>
       </Table>
     </div>
   );

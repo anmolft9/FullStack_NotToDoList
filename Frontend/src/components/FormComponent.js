@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 
 const initialState = {
   task: "",
-  hr: "",
+  hours: "",
   type: "entry",
 };
 
@@ -18,7 +18,7 @@ export const FormComponent = ({ addTask }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    addTask(form);
+    addTask({ ...form });
   };
 
   return (
@@ -41,7 +41,7 @@ export const FormComponent = ({ addTask }) => {
                   <Form.Control
                     size="lg"
                     type="number"
-                    name="hr"
+                    name="hours"
                     placeholder="hours"
                     onChange={handleOnChange}
                   />
