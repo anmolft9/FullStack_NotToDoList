@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Button, Form, Table } from "react-bootstrap";
 
 export const TaskList = ({ taskList }) => {
   return (
@@ -8,6 +8,9 @@ export const TaskList = ({ taskList }) => {
       <Table>
         <thead>
           <tr>
+            <th>
+              <Form.Check type="checkbox" label="" />
+            </th>
             <th>Task</th>
             <th>Hours</th>
             <th>Action</th>
@@ -18,8 +21,16 @@ export const TaskList = ({ taskList }) => {
             taskList.map((item, i) => {
               return (
                 <tr>
+                  <td>
+                    <Form.Check type="checkbox" label="" />
+                  </td>
                   <td>{item.task}</td>
                   <td>{item.hours}</td>
+                  <td>
+                    <Button variant="success">
+                      <i className="fa-solid fa-arrow-right"></i>
+                    </Button>
+                  </td>
                 </tr>
               );
             })}
