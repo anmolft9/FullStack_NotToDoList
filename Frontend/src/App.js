@@ -12,17 +12,24 @@ function App() {
   //   getTaskFromDB();
   // }, []);
 
-  const addTask = (task) => {
+  const addTask = (task, id) => {
     setTaskList([...taskList, task]);
   };
-  // console.log(taskList);
+  console.log(taskList);
   // const getTaskFromDB = async () => {
   //   const data = await fetchTasks();
   //   data.status === "success" && setTaskList(data.result);
   // };
 
-  const switchTask = (type, _id) => {
-    console.log(type, _id);
+  const switchTask = (id, type) => {
+    // console.log(id, type);
+    const switchedArg = taskList.map((item) => {
+      if (item.id === id) {
+        item.type = type;
+      }
+      return item;
+    });
+    setTaskList(switchedArg);
   };
 
   return (

@@ -21,7 +21,12 @@ export const List = ({ taskList, switchTask }) => {
             />
           </Col>
           <Col>
-            <TaskList name="bad" title="badList" list={badList} />
+            <TaskList
+              name="bad"
+              title="badList"
+              list={badList}
+              switchTask={switchTask}
+            />
           </Col>
         </Row>
       </div>
