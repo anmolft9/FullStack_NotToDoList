@@ -1,8 +1,14 @@
 import express from "express";
+import helmet from "helmet";
+import cors from "cors";
 const app = express();
 
 const PORT = 8000;
+
+//middle wares
 app.use(express.json());
+app.use(helmet());
+app.use(cors());
 
 //Database connection
 import { dbConnection } from "./src/config/dbConfig.js";

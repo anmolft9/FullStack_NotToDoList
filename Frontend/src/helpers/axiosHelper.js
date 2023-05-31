@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiEndPoint = "/api/v1/task";
+const apiEndPoint = "http://localhost:8000/api/v1/task";
 
 export const fetchTasks = async () => {
   try {

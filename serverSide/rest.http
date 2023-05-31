@@ -3,7 +3,7 @@ GET http://localhost:8000/
 
 
 ###fetch all task
-GET http://localhost:8000/api/v1/task/646b67f90e34aac6724373e6
+GET http://localhost:8000/api/v1/task
 Content-Type: application/json
 
 ###post task
