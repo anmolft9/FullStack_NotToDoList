@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, Table } from "react-bootstrap";
 
-export const TaskList = ({ taskList }) => {
+export const TaskList = ({ list = [], arrow, switchTask }) => {
   return (
     <div className="mt-5">
       <h5 className="m-4 text-center">Entry List</h5>
@@ -17,23 +17,34 @@ export const TaskList = ({ taskList }) => {
           </tr>
         </thead>
         <tbody>
-          {taskList &&
-            taskList.map((item, i) => {
-              return (
-                <tr>
-                  <td>
-                    <Form.Check type="checkbox" label="" />
-                  </td>
-                  <td>{item.task}</td>
-                  <td>{item.hours}</td>
-                  <td>
-                    <Button variant="success">
+          {list.map((item, i) => {
+            return (
+              <tr>
+                <td>
+                  <Form.Check type="checkbox" label="" />
+                </td>
+                <td>{item.task}</td>
+                <td>{item.hours}</td>
+                <td>
+                  {arrow === "right" ? (
+                    <Button
+                      onClick={() => switchTask(item._id, "bad")}
+                      variant="success"
+                    >
                       <i className="fa-solid fa-arrow-right"></i>
                     </Button>
-                  </td>
-                </tr>
-              );
-            })}
+                  ) : (
+                    <Button
+                      onClick={() => switchTask(item._id, "entry")}
+                      variant="success"
+                    >
+                      <i className="fa-solid fa-arrow-left"></i>
+                    </Button>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
     </div>

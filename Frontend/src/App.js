@@ -8,13 +8,21 @@ import { fetchTasks } from "./helpers/axiosHelper.js";
 function App() {
   const [taskList, setTaskList] = useState([]);
 
-  useEffect(() => {
-    getTaskFromDB();
-  }, []);
+  // useEffect(() => {
+  //   getTaskFromDB();
+  // }, []);
 
-  const getTaskFromDB = async () => {
-    const data = await fetchTasks();
-    data.status === "success" && setTaskList(data.result);
+  const addTask = (task) => {
+    setTaskList([...taskList, task]);
+  };
+  // console.log(taskList);
+  // const getTaskFromDB = async () => {
+  //   const data = await fetchTasks();
+  //   data.status === "success" && setTaskList(data.result);
+  // };
+
+  const switchTask = (type, _id) => {
+    console.log(type, _id);
   };
 
   return (
@@ -24,8 +32,8 @@ function App() {
           <h1>Not To Do List</h1>
         </div>
 
-        <FormComponent />
-        <List taskList={taskList} />
+        <FormComponent addTask={addTask} />
+        <List taskList={taskList} switchTask={switchTask} />
       </Container>
     </div>
   );
