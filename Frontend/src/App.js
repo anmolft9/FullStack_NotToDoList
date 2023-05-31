@@ -3,13 +3,10 @@ import { Container } from "react-bootstrap";
 import { FormComponent } from "./components/FormComponent.js";
 import { List } from "./components/List";
 import { useEffect, useState } from "react";
-import { fetchTasks } from "./helpers/axiosHelper";
+import { fetchTasks } from "./helpers/axiosHelper.js";
 
 function App() {
   const [taskList, setTaskList] = useState([]);
-  // const addTask = (task) => {
-  //   setTaskList([...taskList, task]);
-  // };
 
   useEffect(() => {
     getTaskFromDB();
@@ -19,7 +16,7 @@ function App() {
     const data = await fetchTasks();
     data.status === "success" && setTaskList(data.result);
   };
-  console.log(taskList);
+
   return (
     <div className="App">
       <Container>
