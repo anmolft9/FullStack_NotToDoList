@@ -1,5 +1,5 @@
 import "./App.css";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { FormComponent } from "./components/FormComponent.js";
 import { List } from "./components/List";
 import { useEffect, useState } from "react";
@@ -45,6 +45,12 @@ function App() {
         }
       });
       if (checked) {
+        // const entryIds = taskList.filter((item) => {
+        //   if (item.type === "entry") {
+        //     return item.id;
+        //   }
+        // });
+        // setIds([...ids, ...entryIds]);
         setIds([...ids, ...toDeleteIds]);
       } else {
         const tempArgs = ids.filter((id) => !toDeleteIds.includes(id));
@@ -57,12 +63,18 @@ function App() {
     } else {
       const removeIds = ids.filter((item) => item !== value);
 
-      console.log(removeIds);
+      // console.log(removeIds);
+      setIds(removeIds);
     }
   };
   console.log(ids);
 
-  ///individual selections
+  const handleOnDelete = () => {
+    const afterDelete = taskList.filter((item) => !ids.includes(item.id));
+    console.log(afterDelete);
+    setTaskList(afterDelete);
+    setIds([]);
+  };
 
   return (
     <div className="App">
@@ -77,6 +89,14 @@ function App() {
           switchTask={switchTask}
           handleOnCheck={handleOnCheck}
         />
+
+        <div>
+          {ids.length > 0 && (
+            <Button onClick={handleOnDelete} variant="info">
+              Delete
+            </Button>
+          )}
+        </div>
       </Container>
     </div>
   );
