@@ -7,6 +7,7 @@ import { fetchTasks } from "./helpers/axiosHelper.js";
 
 function App() {
   const [taskList, setTaskList] = useState([]);
+  const [ids, setIds] = useState([]);
 
   // useEffect(() => {
   //   getTaskFromDB();
@@ -15,7 +16,7 @@ function App() {
   const addTask = (task, id) => {
     setTaskList([...taskList, task]);
   };
-  console.log(taskList);
+  // console.log(taskList);
   // const getTaskFromDB = async () => {
   //   const data = await fetchTasks();
   //   data.status === "success" && setTaskList(data.result);
@@ -32,6 +33,37 @@ function App() {
     setTaskList(switchedArg);
   };
 
+  const handleOnCheck = (e) => {
+    const { checked, value } = e.target;
+    // console.log(checked, value);
+
+    if (value === "entry" || value === "bad") {
+      let toDeleteIds = [];
+      taskList.forEach((item) => {
+        if (item.type === value) {
+          toDeleteIds.push(item.id);
+        }
+      });
+      if (checked) {
+        setIds([...ids, ...toDeleteIds]);
+      } else {
+        const tempArgs = ids.filter((id) => !toDeleteIds.includes(id));
+        setIds(tempArgs);
+      }
+      return;
+    }
+    if (checked) {
+      setIds([...ids, value]);
+    } else {
+      const removeIds = ids.filter((item) => item !== value);
+
+      console.log(removeIds);
+    }
+  };
+  console.log(ids);
+
+  ///individual selections
+
   return (
     <div className="App">
       <Container>
@@ -40,7 +72,11 @@ function App() {
         </div>
 
         <FormComponent addTask={addTask} />
-        <List taskList={taskList} switchTask={switchTask} />
+        <List
+          taskList={taskList}
+          switchTask={switchTask}
+          handleOnCheck={handleOnCheck}
+        />
       </Container>
     </div>
   );

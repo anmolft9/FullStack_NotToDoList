@@ -1,7 +1,13 @@
 import React from "react";
 import { Button, Form, Table } from "react-bootstrap";
 
-export const TaskList = ({ list = [], arrow, switchTask }) => {
+export const TaskList = ({
+  list = [],
+  arrow,
+  switchTask,
+  name,
+  handleOnCheck,
+}) => {
   return (
     <div className="mt-5">
       <h5 className="m-4 text-center">Entry List</h5>
@@ -9,7 +15,12 @@ export const TaskList = ({ list = [], arrow, switchTask }) => {
         <thead>
           <tr>
             <th>
-              <Form.Check type="checkbox" label="" />
+              <Form.Check
+                type="checkbox"
+                label=""
+                value={name}
+                onChange={handleOnCheck}
+              />
             </th>
             <th>Task</th>
             <th>Hours</th>
@@ -21,7 +32,12 @@ export const TaskList = ({ list = [], arrow, switchTask }) => {
             return (
               <tr>
                 <td>
-                  <Form.Check type="checkbox" label="" />
+                  <Form.Check
+                    type="checkbox"
+                    label=""
+                    value={item.id}
+                    onChange={handleOnCheck}
+                  />
                 </td>
                 <td>{item.task}</td>
                 <td>{item.hours}</td>
