@@ -3,34 +3,33 @@ import { Button, Container } from "react-bootstrap";
 import { FormComponent } from "./components/FormComponent.js";
 import { List } from "./components/List";
 import { useEffect, useState } from "react";
-import { fetchTasks } from "./helpers/axiosHelper.js";
+import { fetchTasks, postTask, updateData } from "./helpers/axiosHelper.js";
 
 function App() {
   const [taskList, setTaskList] = useState([]);
   const [ids, setIds] = useState([]);
 
-  // useEffect(() => {
-  //   getTaskFromDB();
-  // }, []);
+  useEffect(() => {
+    getTaskFromDB();
+  }, []);
 
-  const addTask = (task, id) => {
-    setTaskList([...taskList, task]);
-  };
   // console.log(taskList);
-  // const getTaskFromDB = async () => {
-  //   const data = await fetchTasks();
-  //   data.status === "success" && setTaskList(data.result);
-  // };
+  const getTaskFromDB = async () => {
+    const data = await fetchTasks();
+    data.status === "success" && setTaskList(data.result);
+  };
 
-  const switchTask = (id, type) => {
-    // console.log(id, type);
-    const switchedArg = taskList.map((item) => {
-      if (item.id === id) {
-        item.type = type;
-      }
-      return item;
-    });
-    setTaskList(switchedArg);
+  ////post task
+  const addTask = async (task) => {
+    const result = await postTask(task);
+
+    result.status === "success" && getTaskFromDB();
+  };
+
+  ///update/switchzå
+  const switchTask = async (_id, type) => {
+    const result = await updateData({ _id, type });
+    result.status === "success" && getTaskFromDB();
   };
 
   const handleOnCheck = (e) => {
@@ -67,7 +66,7 @@ function App() {
       setIds(removeIds);
     }
   };
-  console.log(ids);
+  // console.log(ids);
 
   const handleOnDelete = () => {
     const afterDelete = taskList.filter((item) => !ids.includes(item.id));

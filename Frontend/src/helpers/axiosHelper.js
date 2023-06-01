@@ -14,3 +14,31 @@ export const fetchTasks = async () => {
     };
   }
 };
+
+///post task
+export const postTask = async (task) => {
+  try {
+    const { data } = await axios.post(apiEndPoint, task);
+    // console.log(response);
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};
+
+///patch task
+export const updateData = async (obj) => {
+  try {
+    const { data } = await axios.patch(apiEndPoint, obj);
+    // console.log(response);
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};
