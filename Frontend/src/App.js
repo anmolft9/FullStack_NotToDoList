@@ -1,5 +1,5 @@
 import "./App.css";
-import { Button, Container } from "react-bootstrap";
+import { Alert, Button, Container } from "react-bootstrap";
 import { FormComponent } from "./components/FormComponent.js";
 import { List } from "./components/List";
 import { useEffect, useState } from "react";
@@ -43,10 +43,12 @@ function App() {
 
     if (value === "entry" || value === "bad") {
       let toDeleteIds = [];
+
+      ///multiple selections
       taskList.forEach((item) => {
         //to select multiple same typed task? if "entry" then all the entry typed task's ids are collected
         if (item.type === value) {
-          toDeleteIds.push(item.id);
+          toDeleteIds.push(item._id);
         }
       });
       ////////////////////////////////////////////////////////////////
@@ -70,11 +72,15 @@ function App() {
   };
   // console.log(ids);
 
-  const handleOnDelete = async (ids) => {
-    const result = await deleteData();
+  const handleOnDelete = async () => {
+    const result = await deleteData(ids);
 
-    result.status === "success" && getTaskFromDB();
-    setIds([]);
+    if (result.status === "success") {
+      console.log("deleted");
+      getTaskFromDB();
+
+      setIds([]);
+    }
   };
 
   return (
@@ -89,6 +95,7 @@ function App() {
           taskList={taskList}
           switchTask={switchTask}
           handleOnCheck={handleOnCheck}
+          ids={ids}
         />
 
         <div>

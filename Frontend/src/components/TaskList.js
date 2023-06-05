@@ -7,6 +7,7 @@ export const TaskList = ({
   switchTask,
   name,
   handleOnCheck,
+  ids,
 }) => {
   return (
     <div className="mt-5">
@@ -35,7 +36,8 @@ export const TaskList = ({
                   <Form.Check
                     type="checkbox"
                     label=""
-                    value={item.id}
+                    value={item._id}
+                    checked={ids.includes(item._id)}
                     onChange={handleOnCheck}
                   />
                 </td>

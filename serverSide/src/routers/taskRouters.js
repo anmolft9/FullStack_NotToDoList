@@ -61,10 +61,9 @@ router.patch("/", async (req, res, next) => {
 
 router.delete("/", async (req, res, next) => {
   try {
-    const { _id } = req.body;
-    console.log(_id);
+    const ids = req.body;
 
-    const result = _id ? await deleteTask(_id) : console.log("Id Not Found");
+    const result = ids ? await deleteTask(ids) : console.log("Id Not Found");
 
     res.json({
       status: "success",

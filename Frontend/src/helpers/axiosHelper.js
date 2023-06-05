@@ -45,6 +45,7 @@ export const updateData = async (obj) => {
 ///delete task
 export const deleteData = async (ids) => {
   try {
+    console.log(ids);
     const { data } = await axios.delete(apiEndPoint, { data: ids });
     // console.log(response);
     return data;

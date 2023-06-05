@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 
 import { TaskList } from "./TaskList";
 
-export const List = ({ taskList, switchTask, handleOnCheck }) => {
+export const List = ({ taskList, switchTask, handleOnCheck, ids }) => {
   const entryList = taskList.filter(({ type }) => type === "entry");
   const badList = taskList.filter(({ type }) => type === "bad");
   // console.log(entryList, badList);
@@ -19,6 +19,7 @@ export const List = ({ taskList, switchTask, handleOnCheck }) => {
               arrow="right"
               switchTask={switchTask}
               handleOnCheck={handleOnCheck}
+              ids={ids}
             />
           </Col>
           <Col>
@@ -28,6 +29,7 @@ export const List = ({ taskList, switchTask, handleOnCheck }) => {
               list={badList}
               switchTask={switchTask}
               handleOnCheck={handleOnCheck}
+              ids={ids}
             />
           </Col>
         </Row>
