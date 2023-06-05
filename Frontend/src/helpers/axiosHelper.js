@@ -42,3 +42,16 @@ export const updateData = async (obj) => {
     };
   }
 };
+///delete task
+export const deleteData = async (ids) => {
+  try {
+    const { data } = await axios.delete(apiEndPoint, { data: ids });
+    // console.log(response);
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};

@@ -3,7 +3,12 @@ import { Button, Container } from "react-bootstrap";
 import { FormComponent } from "./components/FormComponent.js";
 import { List } from "./components/List";
 import { useEffect, useState } from "react";
-import { fetchTasks, postTask, updateData } from "./helpers/axiosHelper.js";
+import {
+  deleteData,
+  fetchTasks,
+  postTask,
+  updateData,
+} from "./helpers/axiosHelper.js";
 
 function App() {
   const [taskList, setTaskList] = useState([]);
@@ -39,17 +44,13 @@ function App() {
     if (value === "entry" || value === "bad") {
       let toDeleteIds = [];
       taskList.forEach((item) => {
+        //to select multiple same typed task? if "entry" then all the entry typed task's ids are collected
         if (item.type === value) {
           toDeleteIds.push(item.id);
         }
       });
+      ////////////////////////////////////////////////////////////////
       if (checked) {
-        // const entryIds = taskList.filter((item) => {
-        //   if (item.type === "entry") {
-        //     return item.id;
-        //   }
-        // });
-        // setIds([...ids, ...entryIds]);
         setIds([...ids, ...toDeleteIds]);
       } else {
         const tempArgs = ids.filter((id) => !toDeleteIds.includes(id));
@@ -57,6 +58,7 @@ function App() {
       }
       return;
     }
+    ///individual selecions
     if (checked) {
       setIds([...ids, value]);
     } else {
@@ -68,10 +70,10 @@ function App() {
   };
   // console.log(ids);
 
-  const handleOnDelete = () => {
-    const afterDelete = taskList.filter((item) => !ids.includes(item.id));
-    console.log(afterDelete);
-    setTaskList(afterDelete);
+  const handleOnDelete = async (ids) => {
+    const result = await deleteData();
+
+    result.status === "success" && getTaskFromDB();
     setIds([]);
   };
 
