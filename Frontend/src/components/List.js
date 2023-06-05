@@ -3,9 +3,11 @@ import { Col, Container, Row } from "react-bootstrap";
 
 import { TaskList } from "./TaskList";
 
-export const List = ({ taskList, switchTask, handleOnCheck, ids }) => {
+export const List = ({ taskList, switchTask, handleOnCheck, ids, total }) => {
   const entryList = taskList.filter(({ type }) => type === "entry");
   const badList = taskList.filter(({ type }) => type === "bad");
+
+  const totalBadHours = badList.reduce((acc, item) => acc + +item.hours, 0);
   // console.log(entryList, badList);
   return (
     <Container>
@@ -31,7 +33,9 @@ export const List = ({ taskList, switchTask, handleOnCheck, ids }) => {
               handleOnCheck={handleOnCheck}
               ids={ids}
             />
+            <div>You could have saved : {totalBadHours} hours</div>
           </Col>
+          <div className="mt-5 text-end">Total time:{total} hrs</div>
         </Row>
       </div>
     </Container>

@@ -24,6 +24,7 @@ function App() {
     data.status === "success" && setTaskList(data.result);
   };
 
+  const total = taskList.reduce((acc, item) => acc + +item.hours, 0);
   ////post task
   const addTask = async (task) => {
     const result = await postTask(task);
@@ -96,6 +97,7 @@ function App() {
           switchTask={switchTask}
           handleOnCheck={handleOnCheck}
           ids={ids}
+          total={total}
         />
 
         <div>
